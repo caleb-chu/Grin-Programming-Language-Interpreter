@@ -4,23 +4,25 @@ A Grin program is a sequence of statements, one per line. Here's an example of a
 LET MESSAGE "Hello Boo!"
 PRINT MESSAGE
 .
-Each line contains exactly one statement (i.e., there can be no blank lines). Grin assigns a line number to each of the statements, where the first statement in the program is numbered 1, the second statement is numbered 2, and so on. There is no predefined limit on the number of statements in a Grin program. Execution of a Grin program always begins at line number 1. The last line contains only a dot (.) and nothing else, as a way to mark that the program has ended; it's not a statement, but any subsequent lines of text in the Grin program after that end-of-program marker are ignored.
+
+Each line contains exactly one statement (i.e., there can be no blank lines). Grin assigns a line number to each of the statements, where the first statement in the program is numbered 1, the second statement is numbered 2, and so on. There is no predefined limit on the number of statements in a Grin program. Execution of a Grin program always begins at line number 1. The last line contains only a dot (.) and nothing else, as a way to mark that the program has ended; so any subsequent lines of text in the Grin program after that end-of-program marker are ignored.
 
 The program above consists of two statements. The first one stores the text Hello Boo! into a variable named MESSAGE, then the second one prints the value of that same variable. The output of the program is what you'd expect, given that description.
 
 Hello Boo!
 Lexical rules
 
-Like most programming languages (including Python), a Grin program is made up of a sequence of lexemes, which is a fancy-sounding term for a sequence of characters that combine together with a single meaning and comprise one of the indivisible "atoms" in the language, similar to the role that words play in sentences written in natural languages like English. Programming languages that are written textually generally define a set of lexical rules that specify which lexemes are valid and how to derive a meaning for each of them; Grin is no different, in that respect, so we'll need to start our journey with Grin by acquainting ourselves with those rules.
+A Grin program is made up of a sequence of lexemes, which is a fancy-sounding term for a sequence of characters that combine together with a single meaning and comprise one of the indivisible "atoms" in the language, similar to the role that words play in sentences written in natural languages like English. Programming languages that are written textually generally define a set of lexical rules that specify which lexemes are valid and how to derive a meaning for each of them; Grin is no different, in that respect, so we'll need to start our journey with Grin by acquainting ourselves with those rules.
 
 Grin programs are made up of the following kinds of lexemes.
 
-Integer literals, which are sequences of one or more digits (0-9), optionally preceded by a minus sign -. Their meaning is their corresponding integer value.
-Floating-point literals, which are integer literals that are immediately followed by a dot . and, optionally, one or more digits (0-9). Their meaning is the corresponding floating-point value.
-String literals, which are sequences of zero or more characters, both preceded and followed by one double quote character ". Their meaning is the sequence of characters contained between the double quotes, but not including the double quotes.
+**Integer literals**, which are sequences of one or more digits (0-9), optionally preceded by a minus sign -. Their meaning is their corresponding integer value.
+**Floating-point literals**, which are integer literals that are immediately followed by a dot . and, optionally, one or more digits (0-9). Their meaning is the corresponding floating-point value.
+**String literals**, which are sequences of zero or more characters, both preceded and followed by one double quote character ". 
 There are no special escape sequences such as \n that you'd find in Python, which means that there are two kinds of characters that cannot appear in string literals: newlines and double quotes.
 Identifiers, which are used to specify the names used to describe things like variables and labels. Identifiers begin with a letter, optionally followed by a sequence of letters and digits. Identifiers in Grin are case-sensitive, which means that BOO, Boo, and boo are each considered to be different from the others.
-Keywords, which are sequences of zero or more characters that have a special meaning and, thus, can never be used as identifiers. The following are keywords in Grin: ADD, DIV, END, GOSUB, GOTO, IF, INNUM, INSTR, LET, MULT, PRINT, RETURN, SUB.
+Keywords, which are sequences of zero or more characters that have a special meaning and, thus, can never be used as identifiers. 
+The following are keywords in Grin: ADD, DIV, END, GOSUB, GOTO, IF, INNUM, INSTR, LET, MULT, PRINT, RETURN, SUB.
 Comparison operators, which can be used in some statements to compare two values. There are six comparison operators: =, <>, <, <=, >, and >=.
 Label markers, which are colon characters (i.e., :) that are used to specify the existence of a label on a line.
 End-of-program markers, which are dot characters (i.e., .) that are used to mark the end of a program.
@@ -62,7 +64,7 @@ In the program above, two statements have labels on them: LET A 4 is labeled as 
 
 Spacing
 
-One of the features of Python's syntax is that the way you space your program — indention, empty lines, and so on — has an effect on your program's meaning. Grin, in that sense, is different. Grin programs cannot have blank lines in them, each statement must be on its own line, and at least one space is required to separate lexemes that would otherwise be combined, but the specific amount and placement of blank space between the lexemes on each line is otherwise irrelevant. So, the following program is legal and equivalent Grin to the previous one shown, though obviously there's a lot to be said for using spacing to make a program's meaning more obvious to a human reader.
+Grin programs cannot have blank lines in them, each statement must be on its own line, and at least one space is required to separate lexemes that would otherwise be combined, but the specific amount and placement of blank space between the lexemes on each line is otherwise irrelevant. So, the following program is legal and equivalent Grin to the previous one shown, though obviously there's a lot to be said for using spacing to make a program's meaning more obvious to a human reader.
 
             LET        A    3
    PRINT        A
@@ -211,14 +213,13 @@ In the example above, the ADD statement adds 3 to the value of A, storing the re
 2
 12
 4
-Like Python, arithmetic operations have a different meaning when operating on different types of values. Note, though, that some of the rules in Grin are different from the ones you learned in Python. (These are among the subtleties you'll find that change from one programming language to another.)
 
 Statement	Type (in variable)	Type (in operand)	Result Type	Example
-ADD	Integer	Integer	Integer	11 + 7 = 18
-ADD	Float	Float	Float	11.5 + 7.0 = 18.5
-ADD	Integer	Float	Float	11 + 7.5 = 18.5
-ADD	Float	Integer	Float	11.5 + 7 = 18.5
-ADD	String	String	String	"Boo" + "lean" = "Boolean"
+ADD	        Integer	                Integer	                Integer	        11 + 7 = 18
+ADD	        Float	                Float	                Float	        11.5 + 7.0 = 18.5
+ADD	        Integer	                Float	                Float	        11 + 7.5 = 18.5
+ADD	        Float	                Integer	                Float	        11.5 + 7 = 18.5
+ADD	        String	                String	                String	        "Boo" + "lean" = "Boolean"
 SUB	Integer	Integer	Integer	18 - 7 = 11
 SUB	Float	Float	Float	18.5 - 7.0 = 11.5
 SUB	Integer	Float	Float	18 - 6.5 = 11.5
@@ -233,7 +234,7 @@ DIV	Integer	Integer	Integer	7 / 2 = 3
 DIV	Float	Float	Float	7.5 / 3.0 = 2.5
 DIV	Integer	Float	Float	7 / 2.0 = 3.5
 DIV	Float	Integer	Float	7.0 / 2 = 3.5
-Any combination of types not listed above (e.g., dividing a float by a string) is a runtime error, which means that the program terminates with an error message. Additionally, division by zero (i.e., a DIV statement where the operand is either an integer or floating-point zero) is a runtime error.
+Any combination of types not listed above is a runtime error, which means that the program terminates with an error message. Additionally, division by zero is a runtime error.
 
 Subroutines
 
@@ -348,30 +349,7 @@ The program reads lines of input from the standard input (i.e., from the Python 
 If any errors are encountered while parsing the input, the program prints the corresponding error message — but not a Python traceback — and the program ends.
 After successfully reading an entire Grin program as input, the program interprets the Grin statements, reads their input from the standard input (i.e., from the Python shell), and prints their output to the standard output (i.e., to the Python shell).
 If a runtime error occurs while interpreting the Grin statements (e.g., GOTO 0, adding an integer and a string, etc.), the program prints the corresponding error message — but not a Python traceback — and the program ends.
-For a Grin program that executes successfully to completion, your program should generate no output except for what was printed by Grin statements.
-Designing your interpreter
 
-As the size of a program increases, one of the most difficult obstacles that inexperienced programmers face is their ability to keep separate issues isolated from one another, so they can work on one problem, get all the way to the bottom of it, and then move on to another. This is sometimes referred to as separation of concerns, one of the primary strategies for which is to break a large program into a set of smaller pieces. The obvious mechanism for breaking up a program in Python is the use of classes and functions, though the finesse is in deciding where the seams between those classes and functions should be.
-
-The temptation, especially for novices, is always to try to think about the complete picture, since this strategy works well for the short programs that you write when you're first starting out. As programs become larger, confusion naturally sets in, as the complete picture can be difficult to keep in your brain all at once. Even moderately small Python programs are typically built out of many interacting parts and encompass a great deal of complexity. My complete Grin interpreter has around a dozen modules and several hundred unit tests. (Yours may have fewer, because I implemented a couple of features that I haven't assigned, but this gives you a rough idea about size.) Now, before you freak out, bear in mind that many of those modules contain relatively short classes, a few relatively short functions, and so on. I opted to write more modules with less code in each, so that I could concentrate my efforts on implementing and testing each one largely in the absence of the others.
-
-This project will encourage you to begin thinking about your programs the same way, which will give you the ability to write much larger programs than you could before, as well as enable you to be able to write unit tests at a level of depth you weren't able to do previously.
-
-Design requirements
-
-As you work on your interpreter, you'll want to keep the following requirements in mind.
-
-As much of the code as possible will need to be written in modules in the grin package, with your project3 module (i.e., the "main" module of your project) being a thin layer that launches the execution of the rest of it.
-Think of the project3 module as having one simple job: Knowing that input and output travel through the Python shell, so the rest of the program doesn't need to know that.
-When two issues could be handled in separate modules in the grin package, they should be.
-The provided code, for example, separates the concept of lexing from the concept of parsing; even though they're related, each focuses primarily on one or the other. Even the idea of a "location within the text of the program" has its own separate type, implemented in its own separate module.
-We don't have specific requirements about how many modules you'll need to have, or precisely the way you break your program up, but we'll be evaluating whether you've approached the problem in a way that keeps separate concerns separate.
-
-Within your modules, you'll need to look for opportunities to use classes and inheritance wherever appropriate, both because they're topics we've been exploring in some depth in lecture, and because this problem is one that's amenable to being solved with them, since there are behavioral similarities that can be implemented once and reused using inheritance.
-
-The basic concepts underlying the interpreter
-
-While it's certainly not the case that I start every design by thinking about it in its entirety, one way to start thinking about this particular problem is to brainstorm about the concepts that underlie it. You can then think about the way those concepts fit together, and the ways you might be able to keep them separate. In general, separate concepts should be kept separate until they can't be — which might be quite the opposite of the way you've approached design in your past, because it's not a technique that pays off until programs grow to sizes like this one.
 
 There are multiple kinds of statements in a Grin program. They can all be executed, but different things happen when they're executed. Some things happen the same way for all of them; other things happen the same way for more than one kind of statement.
 There are multiple kinds of values in a Grin program: integers, floats, and strings. We can access their values and we can update them, but the rules for updating them are different depending on their types.
@@ -381,15 +359,6 @@ The line number of the statement that's currently executing.
 The line numbers associated with any labels.
 The values of any variables.
 The line numbers being remembered because of GOSUB statements.
-Each of those concepts could potentially be implemented in a module, and by one or more classes. Don't feel as though you need to build an entire design in your head at once; focus instead on one problem that you can isolate from the others, get your head around that problem, implement (and test) something that you think solves it, and move forward from there. Allow yourself the freedom to be wrong sometimes — not every design idea will pan out, but when you have Git backing you up, you can give up on a bad idea by simply rolling back your changes to the most recent "stable ground" commit.
-
-Unit testing
-
-Along with your Grin interpreter, you will be required to write unit tests, implemented using the unittest module in the Python standard library, and covering as much of your interpreter as is practical.
-
-Note that how you design aspects of your interpreter has a positive impact on whether you can unit test it, as well as how hard you might have to work to do it; that's one of the reasons why you're aiming to write multiple modules in the grin package, and to tackle separate issues separately. For example, the fact that lexing and parsing are handled separately in the provided code means they can be tested separately; the fact that the result of parsing is a sequence of opaque tokens (instead of strings that need to be parsed again later) makes the code that uses the results of parsing similarly easier to test, since the tests can be written in terms of those higher-level tokens.
-
-There is not a strict requirement around code coverage measurement, nor a specific number of tests that must be written, but we'll be evaluating whether your design accommodates your ability to test it, and whether you've written unit tests that substantially cover the portions that can be tested. (Isolating code that has side effects — such as reading and writing text in the Python shell — can go a long way toward making your program more testable.) The provided tests are there partly to give you an idea of what a reasonably complete set of unit tests look like; your goal is to do likewise.
 
 Grin quick reference
 
